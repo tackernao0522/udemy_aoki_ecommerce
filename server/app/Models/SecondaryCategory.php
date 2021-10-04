@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\PrimaryCategory;
+use App\Models\Product;
 
 class SecondaryCategory extends Model
 {
@@ -13,5 +14,10 @@ class SecondaryCategory extends Model
     public function primary()
     {
         return $this->belongsTo(PrimaryCategory::class);
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
     }
 }
