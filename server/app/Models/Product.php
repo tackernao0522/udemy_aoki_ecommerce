@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Shop;
 use App\Models\Image;
 use App\Models\SecondaryCategory;
+use App\Models\Stock;
 
 class Product extends Model
 {
@@ -25,5 +26,10 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(SecondaryCategory::class, 'secondary_category_id');
+    }
+
+    public function stocks()
+    {
+        return $this->hasMany(Stock::class);
     }
 }
