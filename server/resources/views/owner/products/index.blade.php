@@ -19,18 +19,17 @@
                         <div class="w-1/4 p-2 md:p-4">
                             <a href="{{ route('owner.products.edit', $product->id) }}">
                                 <div class="border rounded-md p-2 md:p-4">
-                                    <x-thumbnail :filename="$product->imageFirst->filename" type="products" />
-                                    {{-- <div class="text-gray-700">{{ $product->name }}
-                                </div> --}}
+                                    <x-thumbnail filename="{{ $product->imageFirst->filename ?? '' }}" type="products" />
+                                    <div class="text-gray-700">{{ $product->name }}</div>
+                                </div>
+                            </a>
                         </div>
-                        </a>
+                        @endforeach
+                        @endforeach
                     </div>
-                    @endforeach
-                    @endforeach
+                    {{-- $images->links() --}}
                 </div>
-                {{-- $images->links() --}}
             </div>
         </div>
-    </div>
     </div>
 </x-app-layout>
