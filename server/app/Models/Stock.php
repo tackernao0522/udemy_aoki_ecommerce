@@ -10,6 +10,12 @@ class Stock extends Model
     use HasFactory;
 
     protected $table = 't_stocks'; // table名を変更
+
+    protected $fillable = [
+        'product_id',
+        'type',
+        'quantity',
+    ];
 }
 
 // php artisan tinker
