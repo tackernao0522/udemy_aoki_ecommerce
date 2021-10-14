@@ -1,6 +1,36 @@
 ## udemy Laravel講座
 
+## ダウンロード方法
+
+git clone
+git clone https://github.com/tackernao0522/udemy_aoki_ecommerce.git
+
+git clone ブランチを指定してダウンロードする場合
+git clone -b ブランチ名 https://github.com/tackernao0522/udemy_aoki_ecommerce.git
+
+もしくはzipファイルでダウンロードしてください
+
 ## インストール方法
+
+cd udemy_aoki_ecommerce
+composer install
+npm install
+npm run dev
+
+.env.exampleをコピーして .envファイルを作成
+
+.envファイルの中の下記をご利用の環境に合わせて変更してください。
+
+ローカルサーバー起動後
+php artisan migrate:fresh --deed
+と実行してください。(データベーステーブルとダミーデータが追加されればOK)
+
+最後に
+php artisan key:generate
+と入力してキーを生成後、
+
+php artisan serve
+で簡易サーバーを立ち上げ、表示確認してください。
 
 ## インストール後の実施事項
 
