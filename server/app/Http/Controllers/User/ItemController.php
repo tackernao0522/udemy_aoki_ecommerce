@@ -13,6 +13,17 @@ class ItemController extends Controller
     public function __construct()
     {
         $this->middleware('auth:users');
+
+        $this->middleware(function ($request, $next) {
+            $id = $request->route()->parameter('item'); //shopのid取得
+            if (!is_null($id)) { // null判定
+                $itemId = Product::availableItems()->where('products.id', $id)->exists();
+                if (!$itemId) {
+                    abort(404); // 404画面表示 php artisan vendor:publish --tag=laravel-errors (カスタム)
+                }
+            }
+            return $next($request);
+        });
     }
 
     public function index()
