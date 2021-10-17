@@ -11,6 +11,7 @@ use App\Models\Product;
 use App\Models\Stock;
 use App\Models\PrimaryCategory;
 use App\Mail\TestMail;
+use App\Jobs\SendThankMail;
 
 class ItemController extends Controller
 {
@@ -33,7 +34,12 @@ class ItemController extends Controller
     public function index(Request $request)
     {
         // dd($request);
-        Mail::to(Auth::user()->email)->send(new TestMail());
+
+        // 同期的に送信
+        // Mail::to(Auth::user()->email)->send(new TestMail());
+
+        // 非同期に送信
+        SendThankMail::dispatch();
 
         $categories = PrimaryCategory::with('secondary')
             ->get();
