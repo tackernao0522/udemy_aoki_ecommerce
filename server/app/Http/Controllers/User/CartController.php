@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
 use App\Models\User;
 use App\Models\Stock;
+use Illuminate\Support\Facades\Mail;
 use App\Services\CartService;
+use App\Jobs\SendThankMail;
 
 class CartController extends Controller
 {
@@ -56,6 +58,10 @@ class CartController extends Controller
     {
         $items = Cart::where('user_id', Auth::id())->get();
         $products = CartService::getItemsInCart($items);
+        $user = User::findOrFail(Auth::id());
+
+        SendThankMail::dispatch($products, $user);
+        dd('ユーザーメーつ送信テスト');
 
         $user = User::findOrFail(Auth::id());
         $products = $user->products; // 多対多のリレーション
